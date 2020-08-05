@@ -1,0 +1,192 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	
+	layout:decorate="~{head,ses,foot(Shop)/layoutshop.html}">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+</head>
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+	<!-- HEADER-AREA START -->
+	<header >
+
+		<!-- Mobile-menu end -->
+	</header>
+	<!-- HEADER-AREA END -->
+
+	<!-- PAGE-CONTENT START -->
+	<section layout:fragment="content">
+		<!-- PAGE-BANNER START -->
+		<div class="page-banner-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-banner-menu">
+							<h2 class="page-banner-title">Thông Tin Tài Khoản</h2>
+							<ul>
+								<li><a th:href="@{/home}">Trang Chủ</a></li>
+								<li>My Account</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- PAGE-BANNER END -->
+		<!-- MY-ACCOUNT-AREA START -->
+		<div class="my-account-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="panel-group  margin-btm-0" id="accordion">
+							<th:block th:text="${message}"></th:block>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse"
+											data-parent="#accordion" href="#personal-info"
+											aria-expanded="true"> <i class="pe-7s-bookmarks"></i> <span>Thông
+												Tin Cá Nhân</span>
+										</a>
+									</h4>
+								</div>
+								<div id="personal-info" class="panel-collapse collapse in"
+									role="tabpanel">
+									<div class="panel-body">
+										<form th:action="@{/Update-KhachHang}"
+											th:object="${KhachHang}" method="post">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="billing-address">
+														<div class="row">
+															<div class="col-md-12" hidden="">
+																<label>ID</label> <input type="text" class="custom-form"
+																	placeholder="ID" th:field="*{maKh}" />
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-6">
+																<label>Tên</label> <input type="text"
+																	class="custom-form" placeholder="Tên"
+																	th:field="*{tenKh}" />
+															</div>
+															<div class="col-md-6" hidden="">
+																<label>Tên Đăng Nhập</label> <input type="text"
+																	class="custom-form" placeholder="username"
+																	th:field="*{tenDangNhapKh}" />
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-12">
+																<label>Địa Chỉ</label> <input type="text"
+																	class="custom-form" placeholder="Địa Chỉ"
+																	th:field="*{diaChiKh}" />
+															</div>
+
+														</div>
+														<div class="row">
+															<div class="col-md-6">
+																<label>Email</label> <input type="email"
+																	class="custom-form" placeholder="Email"
+																	th:field="*{emailKh}" />
+															</div>
+															<div class="col-md-6" hidden="">
+																<label>Password</label> <input type="text"
+																	class="custom-form" th:field="*{matKhauKh}" />
+															</div>
+														</div>
+
+														<div class="row">
+															<div class="col-md-6">
+																<label>Ngày Sinh</label> <input type="text"
+																	class="custom-form" placeholder="Date" 
+																	th:field="*{ngaySinhKh}" />
+															</div>
+
+
+															<div class="col-md-6">
+																<label>Số Điện Thoại</label> <input type="text"
+																	class="custom-form" placeholder="Phone" name="phone"
+																	th:field="*{soDienThoaiKh}" />
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-12">
+																<input type="submit" class="custom-submit-2 save"
+																	value="Lưu" />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse"
+											data-parent="#accordion" href="#shipping-info"
+											aria-expanded="false"> <i class="pe-7s-cart"></i> <span>Đơn
+												Hàng Gần Đây</span>
+										</a>
+									</h4>
+								</div>
+								<div id="shipping-info" class="panel-collapse collapse"
+									role="tabpanel">
+									<div class="panel-body">
+										<!-- CHECKOUT-AREA START -->
+										<div class="checkout-area">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<th>Mã hóa đơn</th>
+														<th>Hình thức</th>
+														<th>Thời gian</th>
+														<th>Tình trạng</th>
+														<th>Xem 
+													</tr>
+												</thead>
+												<tbody th:each="item : ${hoadonkh}">
+												<tr>
+												<td th:text="${item.maHd}">
+												<td th:text="${item.hinhThucThanhToan.hinhThuc}">
+												<td th:text="${item.thoiGianHd}">
+												<td th:text="${item.tinhTrangHd.tinhTrang}">
+												<td><a th:href="@{'detail/hoadon/'+${item.maHd}}" ><i class="pe-7s-news-paper"></i></a></td>
+												</tr>
+												</tbody>
+											</table>
+										</div>
+										<!-- CHECKOUT-AREA END -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+
+				</div>
+			</div>
+		</div>
+
+		<!-- MY-ACCOUNT-AREA END -->
+		<!-- BRAND-LOGO-AREA START -->
+
+		<!-- BRAND-LOGO-AREA END -->
+	</section>
+	<!-- PAGE-CONTENT END -->
+
+	<!-- FOOTER-AREA START -->
+	<footer class="footer-area"> </footer>
+	<!-- FOOTER-AREA END -->
+
+
+</body>
+</html>

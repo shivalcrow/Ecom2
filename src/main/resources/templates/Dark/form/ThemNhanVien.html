@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+
+<div class="content-page" layout:fragment="content">
+	<!-- Start content -->
+	<div class="content">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card-box">
+
+						
+
+						<h4 class="header-title m-t-0 m-b-30">Thêm mới nhân viên</h4>
+						<div th:if="${message !=null}">
+						<p th:text="${message}">
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<form class="form-horizontal"
+									th:action="@{/admin/SaveOrUpdate-nv}" th:object="${nhanviendto}" method="post">
+									<div class="form-group" th:if="${nhanviendto.maNv > 0}">
+										<label class="col-md-2 control-label">Mã Nhân Viên</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{maNv}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">Tên nhân viên</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{tenNv}">
+											<span th:if="${#fields.hasErrors('tenNv')}" th:errors="*{tenNv}" style="color: red"></span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Số điện thoại</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{sdtNv}">
+											<span th:if="${#fields.hasErrors('sdtNv')}" th:errors="*{sdtNv}" style="color: red"></span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-md-2 control-label" for="example-email">Email</label>
+										<div class="col-md-10">
+											<input type="email" id="example-email" name="example-email"
+												class="form-control" placeholder="Email"
+												th:field="*{emailNv}">
+												<span th:if="${#fields.hasErrors('emailNv')}" th:errors="*{emailNv}" style="color: red"></span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Chứng Minh Nhân
+											Dân</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{cmndNv}">
+											<span th:if="${#fields.hasErrors('cmndNv')}" th:errors="*{cmndNv}" style="color: red"></span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="control-label col-sm-2">Ngày sinh</label>
+										<div class="col-sm-8">
+											<div class="input-group">
+												<input type="text" class="form-control"
+													th:field="*{ngaySinhNv}" placeholder="dd/MM/yyyy"
+													id="datepicker"> <span
+													class="input-group-addon bg-primary b-0 text-white"><i
+													class="ti-calendar"></i></span>
+													<span th:if="${#fields.hasErrors('ngaySinhNv')}" th:errors="*{ngaySinhNv}" style="color: red"></span>
+											</div>
+											<!-- input-group -->
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Địa chỉ</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control"
+												th:field="*{diaChiNv}">
+												<span th:if="${#fields.hasErrors('diaChiNv')}" th:errors="*{diaChiNv}" style="color: red"></span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Tên đăng nhập</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control"
+												th:field="*{tenDangNhapNv}">
+												<span th:if="${#fields.hasErrors('tenDangNhapNv')}" th:errors="*{tenDangNhapNv}" style="color: red"></span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Mật khẩu</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control"
+												th:field="*{matKhauNv}">
+												<span th:if="${#fields.hasErrors('matKhauNv')}" th:errors="*{matKhauNv}" style="color: red"></span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label"> phân quyền</label>
+										<div class="col-md-10">
+											<select class="form-control select2"
+												th:field="*{phanQuyen}">
+												
+												<option th:each="item: ${phanquyens}"
+													th:value="${item?.maPhanQuyen}"
+													th:text="${item?.tenPhanQuyen}"></option>
+												
+
+											</select>
+										</div>
+									</div>
+
+									<button type="submit" th:if="${nhanviendto.maNv <=0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Thêm
+										mới</button>
+										<button type="submit" th:if="${nhanviendto.maNv > 0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Cập Nhật
+										</button>
+									<a type="button" th:href="@{/admin/NhanVien/page/1}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Quay
+										lại</a>
+
+								</form>
+							</div>
+							<!-- end col -->
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+
+</body>
+
+</html>

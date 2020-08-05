@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+<head>
+
+ 
+
+</head>
+
+
+<body class="fixed-left">
+
+
+	<div class="content-page" layout:fragment="content">
+		<!-- Start content -->
+		<div class="content">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card-box table-responsive">
+
+
+							<h4 class="header-title m-t-0 m-b-30">Danh sách sản phẩm</h4>
+
+							<div class="m-b-30">
+								<a id="addTo4Table"
+									class="btn btn-primary waves-effect waves-light"
+									th:href="@{/admin/add-sp}">Thêm Sản Phẩm </a>
+
+							</div>
+							<div class="m-b-30">
+							<form th:action="@{/admin/SanPham/page/1}">
+							<div class="input-group col-sm-4">
+								<span class="input-group-btn">
+									<input  type="submit" id="myInput"
+										class="btn  waves-light btn-primary" value="Search">
+										<i class="fa fa-search"></i>
+									
+								</span> <input type="text" id="example-input1-group2"
+									name="name" class="form-control"
+									placeholder="Search By Name">
+							</div>
+							</form>
+							</div>
+							<div>
+
+								<table id="datatable" class="table table-striped table-bordered">
+
+									<thead>
+										<tr>
+											<th>Mã SP</th>
+											<th>Tên SP</th>
+											<th>Chất liệu</th>
+											<th>Giá bán</th>
+											<th>Luợt mua</th>
+											<th>Hình ảnh</th>
+											<th>Tình trạng sản phẩm</th>
+											<th>Thao Tác</th>
+										</tr>
+									</thead>
+
+									<tbody th:each="item : ${sanphams}" id="myTable">
+
+										<tr>
+											<td th:text="${item.maSp}"></td>
+											<td th:text="${item.tenSp}"></td>
+											<td th:text="${item.chatLieu.tenCl}"></td>
+
+											<td th:text="${item.giaBan}"></td>
+											<td th:text="${item.luotMuaSp}"></td>
+											<td><img style="height: 120px; width: 100px;"
+												th:src="@{'/getimage/' + ${item.maSp}}"
+												th:alt="${item.hinhAnhSp}"></td>
+											<td th:text="${item.tinhTrang.tinhTrang}"></td>
+											<td class="actions"><a
+												th:href="@{'/admin/edit-sp/'+${item.maSp}}"
+												class="on-default edit-row"> <i class="fa fa-pencil">
+												</i></a> <a th:href="@{'/admin/delete-sp/'+${item.maSp}}"
+												class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-md-8">
+								<nav aria-label="Pagination">
+									<ul class="pagination justify-content-center">
+										<li class="page-item" th:each="pageNumber : ${pageNumbers}">
+											<a class="page-link"
+											th:href="@{|/admin/SanPham/page/${pageNumber}|}"
+											th:text=${pageNumber}></a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+
+						</div>
+						<!-- end col -->
+					</div>
+					<!-- end row -->
+
+
+
+
+
+				</div>
+			</div>
+
+
+		</div>
+		<!-- end row -->
+
+
+
+		<!-- END wrapper -->
+</div>
+
+</body>
+
+</html>

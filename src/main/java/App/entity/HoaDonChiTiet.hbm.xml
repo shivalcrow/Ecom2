@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 20, 2020 11:26:53 AM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="management_shop" dynamic-insert="false" dynamic-update="false" mutable="true" name="App.entity.HoaDonChiTiet" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="hoa_don_chi_tiet">
+        <id name="idHoaDonCt" type="java.lang.Integer">
+            <column name="id_hoa_don_ct"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="App.entity.HoaDon" embed-xml="true" fetch="select" insert="true" name="hoaDon" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_hoa_don"/>
+        </many-to-one>
+        <many-to-one class="App.entity.SanPham" embed-xml="true" fetch="select" insert="true" name="sanPham" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_sp"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="tongTienSp" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="tong_tien_sp" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="soLuongSp" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="so_luong_sp"/>
+        </property>
+    </class>
+</hibernate-mapping>

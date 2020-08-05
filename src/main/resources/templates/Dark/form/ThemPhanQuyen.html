@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+
+
+<div class="content-page" layout:fragment="content">
+	<!-- Start content -->
+	<div class="content">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card-box">
+
+					
+
+						<h4 class="header-title m-t-0 m-b-30">Thêm mới Phân Quyền</h4>
+
+						<div class="row">
+							<div class="col-lg-6">
+								<form class="form-horizontal" th:action="@{/admin/SaveOrUpdate-pq}" th:object="${phanquyendto}" method="post">
+									<div class="form-group" th:if="${phanquyendto.maPhanQuyen >0}">
+										<label class="col-md-2 control-label">Mã phân quyền</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{maPhanQuyen}">
+											  <span th:if="${#fields.hasErrors('maPhanQuyen')}" th:errors="*{maPhanQuyen}" style="color: red"></span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Tên phân quyền</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{tenPhanQuyen}">
+											  <span th:if="${#fields.hasErrors('tenPhanQuyen')}" th:errors="*{tenPhanQuyen}" style="color: red"></span>
+										</div>
+									</div>
+
+									<button type="submit" th:if="${phanquyendto.maPhanQuyen <=0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Thêm
+										mới</button>
+										<button type="submit" th:if="${phanquyendto.maPhanQuyen > 0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Cập Nhật
+										</button>
+									<a type="button" th:href="@{/admin/PhanQuyen/page/1}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Quay
+										lại</a>
+								</form>
+							</div>
+							<!-- end col -->
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+
+
+</body>
+</html>

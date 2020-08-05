@@ -1,0 +1,117 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Shop)/layoutshop.html}">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+</head>
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+	<!-- HEADER-AREA START -->
+	<header class="header-area">
+
+		<!-- Mobile-menu end -->
+	</header>
+	<!-- HEADER-AREA END -->
+
+	<!-- PAGE-CONTENT START -->
+	<section layout:fragment="content">
+		<!-- PAGE-BANNER START -->
+		<div class="page-banner-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-banner-menu">
+							<h2 class="page-banner-title">CHI TIẾT HÓA ĐƠN</h2>
+							<ul>
+								<li><a th:href="@{/home}">home</a></li>
+								<li>Chi Tiết Hóa Đơn</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- PAGE-BANNER END -->
+		<!-- MY-ACCOUNT-AREA START -->
+		<div class="my-account-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel-group  margin-btm-0" id="accordion">
+							<th:block th:text="${message}"></th:block>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+
+									<h4 class="panel-title">
+										<a role="button" data-toggle="collapse"
+											data-parent="#accordion" href="#personal-info"
+											aria-expanded="true"> <i class="pe-7s-bookmarks"></i> <span>KIỂM
+												TRA HÓA ĐƠN </span>
+										</a>
+									</h4>
+								</div>
+								<div id="personal-info" class="panel-collapse collapse in"
+									role="tabpanel">
+									<div class="panel-body">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>Hình</th>
+													<th>Tên Sản Phẩm</th>
+													<th>Số Lượng</th>
+													<th>Tổng tiền</th>
+												</tr>
+											</thead>
+											<tbody th:each="item : ${detailCT2}">
+												<tr>
+												<td><img style="height: 100px; width: 70px"
+												th:src="@{'/getimage/'+ ${item.sanPham.maSp}}"
+												th:alt="${item.sanPham.hinhAnhSp}"></td>
+													<td th:text="${item.sanPham.tenSp}">
+													<td th:text="${item.soLuongSp}">
+													<td th:text="${item.tongTienSp}">
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td>
+													<td>
+													<td colspan="3"><strong style="color: black;"
+														th:text="'TỔNG TIỀN HÓA ĐƠN:   '+${total2} +' vnd'"></strong></td>
+
+
+
+												</tr>
+											</tfoot>
+
+
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- MY-ACCOUNT-AREA END -->
+		<!-- BRAND-LOGO-AREA START -->
+
+		<!-- BRAND-LOGO-AREA END -->
+	</section>
+	<!-- PAGE-CONTENT END -->
+
+	<!-- FOOTER-AREA START -->
+	<footer class="footer-area"> </footer>
+	<!-- FOOTER-AREA END -->
+
+
+</body>
+</html>

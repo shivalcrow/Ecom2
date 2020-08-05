@@ -1,0 +1,337 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	
+	layout:decorate="~{head,ses,foot(Shop)/layoutshop.html}">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+
+</head>
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+	<!-- HEADER-AREA START -->
+	<header>
+		<!-- Header-Top Start -->
+		
+		<!-- Mobile-menu end -->
+	</header>
+	<!-- HEADER-AREA END -->
+
+	<!-- PAGE-CONTENT START -->
+	<section layout:fragment="content" >
+		<!-- SLIDER-AREA START -->
+		<div class="slider-area margin-bottom-80">
+			<div class="bend niceties preview-2">
+				<div id="ensign-nivoslider" class="slides">
+					<img src="imgSlide/1.jpg" alt=""
+						title="#slider-direction-1" /> <img
+						src="imgSlide/2.jpg" alt="" title="#slider-direction-2" />
+					<img src="imgSlide/3.jpg" alt=""
+						title="#slider-direction-3" />
+				</div>
+				
+			</div>
+		</div>
+		<!-- SLIDER-AREA END -->
+		<!-- BANNER-AREA START -->
+		<div class="banner-area fix margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="single-banner fix">
+							<div
+								class="banner-photo padding-0 pull-left col-md-6 col-sm-6 col-xs-12">
+								<a href="#"><img src="imgSlide/02.jpg" alt="" style="height: 300px; width: 585px;" /></a>
+							</div>
+							<div class="banner-brief banner-brief-right col-md-6 col-sm-6">
+								<h2>
+									Bộ sưu tập <span> sản phẩm </span>
+								</h2>
+								<h2 class="line-bottom">
+									<span> Thời trang </span> nữ
+								</h2>
+								<a href="sanpham/women" class="shop-now">Xem ngay</a>
+							</div>
+						</div>
+						<div class="single-banner fix">
+							<div class="banner-brief banner-brief-left col-md-6 col-sm-6">
+								<h2>
+									Bộ sưu tập <span> sản phẩm </span>
+								</h2>
+								<h2 class="line-bottom">
+									<span> Thời trang </span> nam
+								</h2>
+								<a href="sanpham/men" class="shop-now">Xem ngay</a>
+							</div>
+							<div
+								class="banner-photo padding-0 pull-right col-md-6 col-sm-6 col-xs-12">
+								<a href="#"><img src="imgSlide/01.jpg" alt="" style="height: 300px; width: 585px;"  /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- BANNER-AREA END -->
+
+		<!-- PRODUCT-AREA START -->
+		<div class="product-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h2 class="border-left-right-btm">Sản phẩm mua nhiều</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="active-product" class="product-slider">
+				<!-- Single-product start -->
+				<div class="single-product" th:each="item : ${muanhieu}">
+					<div class="product-photo">
+						<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}"> <img class="primary-photo" style="height: 500px; width: auto;"
+							th:src="@{'/getimage/' + ${item.maSp}}" 
+											th:alt="${item.hinhAnhSp}" alt="" /> <img class="secondary-photo" style="height: 500px; width: auto;"
+							th:src="@{'/getimage/' + ${item.maSp}}"
+											th:alt="${item.hinhAnhSp}"alt="" />
+						</a>
+						<div class="pro-action">
+							<a href="#" class="action-btn"><i class="sp-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a>
+						</div>
+					</div>
+					<div class="product-brief">
+						<div class="pro-rating">
+							<a href="#"><i class="sp-star rating-1"></i></a> <a href="#"><i
+								class="sp-star rating-1"></i></a> <a href="#"><i
+								class="sp-star rating-1"></i></a> <a href="#"><i
+								class="sp-star rating-1"></i></a> <a href="#"><i
+								class="sp-star rating-2"></i></a>
+						</div>
+						<h2>
+							<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}" th:text="${item.tenSp}"></a>
+						</h2>
+						<h3 th:text="${item.giaBan}"></h3>
+					</div>
+				</div>
+				<!-- Single-product end -->
+				
+			</div>
+		</div>
+		<!-- PRODUCT-AREA END -->
+		
+		<!-- BEST-SELL-AREA START -->
+		<div class="best-sell-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h2 class="border-left-right-btm">1 số sản phẩm</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- best-sell-menu -->
+						<ul role="tablist" class="best-sell-menu">
+							<li role="presentation" class="active"><a href="#men"
+								role="tab" data-toggle="tab">Nam</a></li>
+							<li role="presentation"><a href="#women" role="tab"
+								data-toggle="tab">Nữ</a></li>						</ul>
+						<!-- best-sell-product -->
+						<div class="tab-content best-sell-product" >
+							<div role="tabpanel" class="tab-pane fade in active" id="men" >
+								<div class="row" >
+									<div class="col-md-4 col-sm-4 col-xs-12" th:each="item : ${men}" >
+										<!-- Single-product start -->
+										<div class="single-product" >
+											<div class="product-photo" >
+												<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}"> <img class="primary-photo" style="height: 500px; width: auto;"
+													th:src="@{'/getimage/' + ${item.maSp}}"
+											th:alt="${item.hinhAnhSp}"  alt="" /> <img style="height: 500px; width: auto;"
+													class="secondary-photo" th:src="@{'/getimage/' + ${item.maSp}}"
+											th:alt="${item.hinhAnhSp}" alt="" />
+												</a>
+												<div class="pro-action">
+													<a href="#" class="action-btn"><i
+														class="sp-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a>
+												</div>
+											</div>
+											<div class="product-brief">
+												<h2>
+													<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}" th:text="${item.tenSp}"></a>
+												</h2>
+												<div class="product-brief-inner">
+													<h3 th:text="${item.giaBan}"></h3>
+													<div class="pro-rating">
+														<a href="#"><i class="sp-star rating-1"></i></a> <a
+															href="#"><i class="sp-star rating-1"></i></a> <a href="#"><i
+															class="sp-star rating-1"></i></a> <a href="#"><i
+															class="sp-star rating-1"></i></a> <a href="#"><i
+															class="sp-star rating-2"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- Single-product end -->
+									</div>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="women">
+								<div class="row">
+									<div class="col-md-4 col-sm-4 col-xs-12" th:each="item : ${women}" >
+										<!-- Single-product start -->
+										<div class="single-product">
+											<div class="product-photo">
+												<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}"> <img class="primary-photo" style="height: 500px; width: auto;"
+													th:src="@{'/getimage/' + ${item.maSp}}"
+											th:alt="${item.hinhAnhSp}"
+													src="img/best-sell/6.jpg" alt="" /> <img style="height: 500px; width: auto;"
+													th:src="@{'/getimage/' + ${item.maSp}}"
+											th:alt="${item.hinhAnhSp}"
+													class="secondary-photo" src="img/best-sell/1.jpg" alt="" />
+												</a>
+												<div class="pro-action">
+													<a href="#" class="action-btn"><i
+														class="sp-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a> 
+												</div>
+											</div>
+											<div class="product-brief">
+												<h2>
+													<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}" th:text="${item.tenSp}"></a>
+												</h2>
+												<div class="product-brief-inner">
+													<h3 th:text="${item.giaBan}"></h3>
+													<div class="pro-rating">
+														<a href="#"><i class="sp-star rating-1"></i></a> <a
+															href="#"><i class="sp-star rating-1"></i></a> <a href="#"><i
+															class="sp-star rating-1"></i></a> <a href="#"><i
+															class="sp-star rating-1"></i></a> <a href="#"><i
+															class="sp-star rating-2"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- Single-product end -->
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- BEST-SELL-AREA END -->
+		<!-- ALL-PRODUCT-VIEW START -->
+		<div class="all-product-view-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="all-product-view">
+							<div class="row">
+								<div
+									class="col-md-7 col-sm-8 col-xs-12 col-sm-offset-1 col-md-offset-2">
+									<div class="all-product-brief">
+										<h2>xem những sản phẩm mới !!</h2>
+										<p>STD Fashion Shop luôn cập nhật các sản phẩm thời trang nam nữ và cung cấp cho khách hàng các sản phẩm mới mỗi ngày. Chúng tôi hy vọng khách hàng sẽ hài lòng về các sản phẩm mới này.</p>
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<div class="all-product-view-link">
+										<a href="/sanpham" class="shop-now">xem sản phẩm</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ALL-PRODUCT-VIEW END -->
+		
+		
+		
+		<!-- SERVICE-AREA START -->
+		<div class="service-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="single-service">
+							<div class="service-icon">
+								<i class="sp-transport"></i>
+							</div>
+							<div class="service-brief">
+								<h3>Giao hàng miễn phí</h3>
+								<p>Giao hàng nhanh trong vòng 2h nếu khu vực nhận hàng gần cửa hàng</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="single-service">
+							<div class="service-icon">
+								<i class="sp-head-phone"></i>
+							</div>
+							<div class="service-brief">
+								<h3>Đường dây nóng</h3>
+								<p>(+84) 911542728 - Gọi chúng tôi bất cứ lúc nào bạn cần hỗ trợ</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="single-service">
+							<div class="service-icon">
+								<i class="sp-business"></i>
+							</div>
+							<div class="service-brief">
+								<h3>Đảm bảo hoàn tiền</h3>
+								<p>Nếu sản phẩm lúc nhận bị lỗi hoặc không còn mới bạn có thể hoàn lại tiền</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- SERVICE-AREA END -->
+		
+		<!-- SUBSCRIBE-AREA START -->
+		<div class="suscribe-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="subscribe">
+							<div class="subscribe-brief">
+								<h3>Nhập địa chỉ email của bạn</h3>
+								<p>Chúng tôi sẻ sẽ gửi thông báo cho bạn khi có sản phẩm mới nếu bạn quan tâm.</p>
+							</div>
+							<div class="subscribe-form">
+								<form action="#">
+									<input type="text" placeholder="Nhập email để đăng ký" />
+									<button type="submit">Gửi đi</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- SUBSCRIBE-AREA START END -->
+	</section>
+	<!-- PAGE-CONTENT END -->
+
+	<!-- FOOTER-AREA START -->
+	<footer >
+		
+	</footer>
+	<!-- FOOTER-AREA END -->
+
+
+	<!-- all js here -->
+	<!-- jquery latest version -->
+	
+	
+	
+</body>
+</html>

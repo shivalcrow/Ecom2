@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Employee)/layoutemployee.html}">
+<head>
+
+</head>
+
+
+<body class="fixed-left">
+
+	<!-- Begin page -->
+
+	<div class="content-page" layout:fragment="content">
+		<!-- Start content -->
+		<div class="content">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card-box">
+
+						
+
+							<h4 class="header-title m-t-0 m-b-30">Thêm mới khách hàng</h4>
+							<div th:if="${message !=null}">
+							<p th:text="${message}">
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6">
+									<form class="form-horizontal" th:action="@{/employee/SaveOrUpdate-kh}" method="post" th:object="${khachhang}">
+										<div class="form-group"  th:if="${khachhang.maKh >0}">
+											<label class="col-md-2 control-label">Mã Khách Hàng</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" th:field="*{maKh}">
+											</div>
+										</div>
+										<div class="form-group"  >
+											<label class="col-md-2 control-label">Tên đăng nhập</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" th:field="*{tenDangNhapKh}">
+												<span th:if="${#fields.hasErrors('tenDangNhapKh')}"
+												th:errors="*{tenDangNhapKh}" style="color: red"></span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label">Mật khẩu</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" th:field="*{matKhauKh}">
+												<span th:if="${#fields.hasErrors('matKhauKh')}"
+												th:errors="*{matKhauKh}" style="color: red"></span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label">Lặp lại Mật khẩu</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control"  name="password2">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-md-2 control-label">Tên khách hàng</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" th:field="*{tenKh}">
+												<span th:if="${#fields.hasErrors('tenKh')}"
+												th:errors="*{tenKh}" style="color: red"></span>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-md-2 control-label">Số điện thoại</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" th:field="*{soDienThoaiKh}" >
+											</div>
+										</div>
+
+
+										<div class="form-group">
+											<label class="col-md-2 control-label" for="example-email">Email</label>
+											<div class="col-md-10">
+												<input type="email" id="example-email" 
+													class="form-control" th:field="*{emailKh}">
+													<span th:if="${#fields.hasErrors('emailKh')}"
+												th:errors="*{emailKh}" style="color: red"></span>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label col-sm-2">Ngày sinh</label>
+											<div class="col-sm-8">
+												<div class="input-group">
+													<input type="text" class="form-control"
+														 id="datepicker" th:field="*{ngaySinhKh}"> <span
+														class="input-group-addon bg-primary b-0 text-white"><i
+														class="ti-calendar"></i></span>
+												</div>
+												<!-- input-group -->
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-md-2 control-label">Địa chỉ</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" th:field="*{diaChiKh}">
+												<span th:if="${#fields.hasErrors('diaChiKh')}"
+												th:errors="*{diaChiKh}" style="color: red"></span>
+											</div>
+										</div>
+
+										
+										<button type="submit" th:if="${khachhang.maKh <=0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Thêm
+										mới</button>
+										<button type="submit" th:if="${khachhang.maKh > 0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Cập Nhật
+										</button>
+									<a type="button" th:href="@{/employee/KhachHang/page/1}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Quay
+										lại</a>
+
+									</form>
+								</div>
+								<!-- end col -->
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Right content here -->
+	<!-- ============================================================== -->
+
+
+	<!-- Right Sidebar -->
+
+</body>
+</html>

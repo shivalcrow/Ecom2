@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+<head>
+<style type="text/css">
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+
+
+<body class="fixed-left">
+
+	<div class="content-page" layout:fragment="content">
+		<!-- Start content -->
+		<div class="content">
+			<div class="container">
+				<!-- end row -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="m-b-30">
+											<a id="addTo4Table"
+												class="btn btn-primary waves-effect waves-light"
+												th:href="@{/admin/add-nv}">Thêm Nhân Viên </a>
+										</div>
+									</div>
+								</div>
+								<form th:action="@{/admin/NhanVien/page/1}">
+							<div class="input-group">
+								<span class="input-group-btn">
+									<input  type="submit"
+										class="btn  waves-light btn-primary" value="Search">
+										<i class="fa fa-search"></i>
+									
+								</span> <input type="text" id="example-input1-group2"
+									name="name" class="form-control"
+									placeholder="Search By Name">
+							</div>
+							</form>
+								<div style="overflow-x:auto;">
+									<table class="table table-striped" id="datatable-editable">
+										<thead>
+											<tr>
+												<th>ID Nhân Viên</th>
+												<th>Tên nhân viên</th>
+												<th>Số điện thoại</th>
+												<th>Email</th>
+												<th>Cmnd</th>
+												<th>Ngày sinh</th>
+												<th>Địa chỉ</th>
+												<th>Tên đăng nhập</th>
+												<th>Mật khẩu</th>
+												<th>Phân quyền</th>
+												<th>Thao tác</th>
+											</tr>
+										</thead>
+
+										<tbody th:each="item :${nhanviens} ">
+											<tr class="gradeX">
+												<td th:text="${item.maNv}">
+												<td th:text="${item.tenNv}">
+												<td th:text="${item.sdtNv}">
+												<td th:text="${item.emailNv}">
+												<td th:text="${item.cmndNv}">
+												<td th:text="${item.ngaySinhNv}">
+												<td th:text="${item.diaChiNv}">
+												<td th:text="${item.tenDangNhapNv}">
+												<td th:text="${item.matKhauNv}">
+												<td th:text="${item.phanQuyen.tenPhanQuyen}">
+												<td class="actions"><a
+													th:href="@{'/admin/edit-nv/'+${item.maNv}}"
+													class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+													<a th:href="@{'/admin/delete-nv/'+${item.maNv}}"
+													class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+												</td>
+											</tr>
+										</tbody>
+
+
+									</table>
+								</div>
+							</div>
+							<!-- end: panel body -->
+
+						</div>
+						<div class="col-md-8">
+							<nav aria-label="Pagination">
+								<ul class="pagination justify-content-center">
+									<li class="page-item" th:each="pageNumber : ${pageNumbers}">
+										<a class="page-link"
+										th:href="@{|/admin/NhanVien/page/${pageNumber}|}"
+										th:text=${pageNumber}></a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<!-- end panel -->
+					</div>
+					<!-- end col-->
+				</div>
+				<!-- end row -->
+
+			</div>
+			<!-- container -->
+
+		</div>
+		<!-- content -->
+
+
+	</div>
+
+
+
+
+</body>
+</html>

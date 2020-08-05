@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 20, 2020 11:24:49 AM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="management_shop" dynamic-insert="false" dynamic-update="false" mutable="true" name="App.entity.HoaDon" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="hoa_don">
+        <id name="maHd" type="java.lang.Integer">
+            <column name="ma_hd"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="App.entity.HinhThucThanhToan" embed-xml="true" fetch="select" insert="true" name="hinhThucThanhToan" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="ma_ht" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="App.entity.KhachHang" embed-xml="true" fetch="select" insert="true" name="khachHang" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="ma_kh" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="App.entity.NhanVien" embed-xml="true" fetch="select" insert="true" name="nhanVien" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="ma_nv" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="App.entity.TinhTrangHd" embed-xml="true" fetch="select" insert="true" name="tinhTrangHd" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="tinh_trang" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="thoiGianHd" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="thoi_gian_hd" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="thongKes" optimistic-lock="true" sort="unsorted" table="thong_ke">
+            <key on-delete="noaction">
+                <column name="ma_hd" not-null="true"/>
+            </key>
+            <one-to-many class="App.entity.ThongKe" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="hoaDonChiTiets" optimistic-lock="true" sort="unsorted" table="hoa_don_chi_tiet">
+            <key on-delete="noaction">
+                <column name="id_hoa_don"/>
+            </key>
+            <one-to-many class="App.entity.HoaDonChiTiet" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

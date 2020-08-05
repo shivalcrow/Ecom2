@@ -1,0 +1,151 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Shop)/layoutshop.html}">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+</head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+		
+		<!-- HEADER-AREA START -->
+        
+		<section class="page-content" layout:fragment="content">
+			<!-- PAGE-BANNER START -->
+			<div class="page-banner-area  margin-bottom-80">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="page-banner-menu">
+								<h2 class="page-banner-title">Đăng Nhập</h2>
+								<ul>
+									<li><a th:href="@{/home}">home</a></li>
+									<li>Login</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- PAGE-BANNER END -->
+			<!-- LOGIN-AREA START -->
+			
+			
+			
+			<div class="lognin-area">
+				<div class="container">
+					<div class="row">
+						<!-- Registered-Customers Start -->
+						<div class="col-md-6">
+							<form th:action="@{/login}" 
+							th:object="${Khachhang}" method ="post" >
+								
+								<div class="registered-customers">
+									<h2 class="login-title">Đăng Nhập</h2>
+									<div class="registered">
+										<p>Nếu bạn đã có tài khoản, vui lòng đăng nhập</p>
+										<div th:if="messagelogin !=null">
+										<p th:text="${messagelogin}">
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<input type="text" th:field="*{tenDangNhapKh}" class="custom-form"  />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<input type="password" th:field="*{matKhauKh}" class="custom-form"  />
+											</div>
+										</div>
+										<p><label class="forgot"><a href="#">Quên Mật Khẩu?</a></label></p>
+										<input type="submit" class="custom-submit-2" value="Đăng Nhập" />
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- Registered-Customers End -->
+						<div class="col-md-6">
+							<form th:action="@{/dangky}" th:object="${Khachhang}" method="post">
+								<div class="new-customers">
+									<h2 class="login-title">Thành Viên Mới</h2>
+									<div th:if="${message !=null}">
+									<p th:text="${message}">
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<input type="text" class="custom-form" placeholder="Họ Tên" th:field="*{tenKh}"/>
+											<span th:if="${#fields.hasErrors('tenKh')}" th:errors="*{tenKh}" style="color: red"></span>
+										</div>
+										
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<input type="text" class="custom-form" placeholder="Tài Khoản" th:field="*{tenDangNhapKh}"/>
+											<span th:if="${#fields.hasErrors('tenDangNhapKh')}" th:errors="*{tenDangNhapKh}" style="color: red"></span>
+										</div>
+										
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<input type="text" class="custom-form" placeholder="Địa Chỉ" th:field="*{diaChiKh}" />
+											<span th:if="${#fields.hasErrors('diaChiKh')}" th:errors="*{diaChiKh}" style="color: red"></span>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-sm-6">
+											<input type="text" class="custom-form" placeholder="Số Điện Thoại" th:field="*{soDienThoaiKh}"/>
+										</div>
+										<div class="col-sm-6">
+											<input class="custom-form" type="text" placeholder="Ngày Sinh"  th:field="*{ngaySinhKh}"/>
+											<span th:if="${#fields.hasErrors('ngaySinhKh')}" th:errors="*{ngaySinhKh}" style="color: red"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<input class="custom-form" type="email" placeholder="Email" name="email" th:field="*{emailKh}"/>
+											<span th:if="${#fields.hasErrors('emailKh')}" th:errors="*{emailKh}" style="color: red"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<input class="custom-form" type="password" placeholder="Mật Khẩu" th:field="*{matKhauKh}"/>
+											<span th:if="${#fields.hasErrors('matKhauKh')}" th:errors="*{matKhauKh}" style="color: red"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<input class="custom-form" type="password" placeholder="Xác Nhận Mật Khẩu" name="password2" />
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-sm-6">
+											<input type="submit" class="custom-form custom-submit no-margin" value="Đăng Ký" />
+										</div>
+										
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<!-- LOGIN-AREA END -->
+			<!-- BRAND-LOGO-AREA START -->
+			
+			<!-- BRAND-LOGO-AREA END -->
+		</section>
+		<!-- PAGE-CONTENT END -->
+
+		<!-- FOOTER-AREA START -->
+		<footer>
+		</footer>
+		<!-- FOOTER-AREA END -->
+
+		
+    </body>
+</html>

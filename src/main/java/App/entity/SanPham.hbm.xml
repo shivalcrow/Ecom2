@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 20, 2020 11:26:53 AM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="management_shop" dynamic-insert="false" dynamic-update="false" mutable="true" name="App.entity.SanPham" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="san_pham">
+        <id name="maSp" type="java.lang.Integer">
+            <column name="ma_sp"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="App.entity.ChatLieu" embed-xml="true" fetch="select" insert="true" name="chatLieu" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="ma_chat_lieu_sp"/>
+        </many-to-one>
+        <many-to-one class="App.entity.DanhMuc" embed-xml="true" fetch="select" insert="true" name="danhMuc" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="ma_dm" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="App.entity.LoaiSp" embed-xml="true" fetch="select" insert="true" name="loaiSp" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="loai_sp" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="App.entity.TinhTrang" embed-xml="true" fetch="select" insert="true" name="tinhTrang" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="tinh_trang"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="tenSp" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="ten_sp"/>
+        </property>
+        <property generated="never" lazy="false" name="giaBan" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="gia_ban" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="luotMuaSp" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="luot_mua_sp"/>
+        </property>
+        <property generated="never" lazy="false" name="hinhAnhSp" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="hinh_anh_sp"/>
+        </property>
+        <property generated="never" lazy="false" name="moTaSp" optimistic-lock="true" type="string" unique="false">
+            <column length="1000" name="mo_ta_sp"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="hoaDonChiTiets" optimistic-lock="true" sort="unsorted" table="hoa_don_chi_tiet">
+            <key on-delete="noaction">
+                <column name="id_sp"/>
+            </key>
+            <one-to-many class="App.entity.HoaDonChiTiet" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

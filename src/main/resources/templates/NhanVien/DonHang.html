@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Employee)/layoutemployee.html}">
+<head>
+
+
+</head>
+
+
+<body class="fixed-left">
+
+
+	<div class="content-page" layout:fragment="content">
+		<!-- Start content -->
+		<div class="content">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card-box">
+							<div class="dropdown pull-right">
+								<a href="#" class="dropdown-toggle card-drop"
+									data-toggle="dropdown" aria-expanded="false"> <i
+									class="zmdi zmdi-more-vert"></i>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+								</ul>
+							</div>
+
+							<h4 class="header-title m-t-0 m-b-30">Đơn hàng</h4>
+
+
+
+							<table class="table m-0">
+								<thead>
+									<tr>
+										<th>Mã đơn hàng</th>
+										<th>Mã khách hàng</th>
+									<!-- 	<th>Mã sp</th> -->
+										<th>Ngày mua</th>
+									<!-- 	<th>Tổng tiền</th> -->
+										<th>Tình trạng</th>
+										<th>Tùy chọn</th>
+									</tr>
+								</thead>
+								<tbody th:each="item :${hoadons}">
+									<tr>
+
+										<td th:text="${item.maHd}" />
+										<td th:text="${item.khachHang.tenKh}"></td>
+									<!-- 	<td th:text="${item.hoaDonChiTiets.sanPham}"></td> -->
+										<td th:text="${item.thoiGianHd}"></td>
+									<!-- 	<td th:text="${item.hoaDonChiTiets.tongTienSp}"></td> -->
+										<!-- <td th:style="${item.tinhTrangHd.tinhTrang eq 'Đã Xác Nhận'}  ?  'color: green;': 'color:red'" th:text="${item.tinhTrangHd.tinhTrang}"></td> -->
+										<td th:if="${item.tinhTrangHd.tinhTrang eq 'Đã Xác Nhận'}" style="color: green" th:text="${item.tinhTrangHd.tinhTrang}"></td>
+										<td th:if="${item.tinhTrangHd.tinhTrang eq 'Chưa Xác Nhận'}" style="color: red" th:text="${item.tinhTrangHd.tinhTrang}"></td>
+										<td th:if="${item.tinhTrangHd.tinhTrang eq 'Đã Hủy'}" style="color:back" th:text="${item.tinhTrangHd.tinhTrang}"></td>
+										<td><a th:href="@{'/employee/HoaDon/detail/'+${item.maHd}+'/'+${item.maHd}}" class="btn btn-custom waves-effect waves-light w-md m-b-5">Xem Đơn Hàng</a></td>
+									</tr> 
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- end col -->
+					<div class="col-md-8">
+							<nav aria-label="Pagination">
+								<ul class="pagination justify-content-center">
+									<li class="page-item" th:each="pageNumber : ${pageNumbers}">
+										<a class="page-link"
+										th:href="@{|/employee/HoaDon/page/${pageNumber}|}"
+										th:text=${pageNumber}></a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+
+
+
+				</div>
+
+
+				<!-- ============================================================== -->
+				<!-- End Right content here -->
+				<!-- ============================================================== -->
+
+
+				<!-- Right Sidebar -->
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

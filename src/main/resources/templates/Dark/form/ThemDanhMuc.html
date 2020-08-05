@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="content-page" layout:fragment="content">
+	<!-- Start content -->
+	<div class="content">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card-box">
+
+
+
+						<h4 class="header-title m-t-0 m-b-30">Thêm mới Danh Mục</h4>
+						<div th:if="${message !=null}">
+						<p th:text="${message}">
+						</div>
+						
+						<div class="row">
+							<div class="col-lg-6">
+								<form class="form-horizontal"  method="post"
+									th:object="${danhmucdto}" th:action="@{/admin/SaveOrUpdate-dm}">
+									<div class="form-group" th:if="${danhmucdto.maDm >0}">
+										<label class="col-md-2 control-label">Mã Danh Mục</label>
+										<div class="col-md-10">
+											<input th:field="*{maDm}" class="form-control" >
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Tên danh mục</label>
+										<div class="col-md-10">
+											<input th:field="*{tenDm}" type="text" class="form-control" placeholder="Name"
+												/>
+												<span th:if="${#fields.hasErrors('tenDm')}" th:errors="*{tenDm}" style="color: red"></span>
+										</div>
+									</div>
+
+									<button type="submit" th:if="${danhmucdto.maDm <=0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Thêm
+										mới</button>
+										<button type="submit" th:if="${danhmucdto.maDm > 0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Cập Nhật
+										</button>
+									<a type="button" th:href="@{/admin/DanhMuc/page/1}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Quay
+										Lại Danh Sách Danh Mục </a>
+
+								</form>
+							</div>
+							<!-- end col -->
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+
+
+</body>
+</html>

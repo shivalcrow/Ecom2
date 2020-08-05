@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Shop)/layoutshop.html}">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<header> </header>
+	<!-- HEADER-AREA END -->
+
+	<!-- PAGE-CONTENT START -->
+	<section layout:fragment="content">
+		<!-- PAGE-BANNER START -->
+		<div class="page-banner-area photo-3 margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-banner-menu">
+							<h2 class="page-banner-title">Shopping Cart</h2>
+							<ul>
+								<li><a th:href="@{/home}">home</a></li>
+								<li>Shoping Cart</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- PAGE-BANNER END -->
+		<!-- SHOPPING-CART-AREA START -->
+		<div class="shopping-cart-area margin-bottom-80">
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-md-12">
+						<form  th:action="@{/cart/checkout}" method="post" th:object="${hoadon}" >
+							<div class="table-content table-responsive">
+								<table>
+									<thead>
+										<tr>
+											<th class="product-thumbnail">Hình Ảnh</th>
+											<th class="product-name">Tên Sản Phẩm</th>
+											<th class="product-edit">Giá Tiền</th>
+											<th class="product-quantity">Số Lượng</th>
+											<th class="product-subtotal">Tổng Tiền</th>
+											<th>
+
+										</tr>
+									</thead>
+									<tbody th:each="map :${session.mycartitem}">
+										<tr>
+											<td><img style="height: 100px; width: 70px"
+												th:src="@{'/getimage/'+ ${map.value.sanpham.maSp}}"
+												th:alt="${map.value.sanpham.hinhAnhSp}"></td>
+											<td th:text="${map.value.sanpham.tenSp}"></td>
+											<td th:text="${map.value.sanpham.giaBan}"></td>
+											<td th:text="${map.value.quantity}"></td>
+											<td th:text="${map.value.quantity*map.value.sanpham.giaBan}"></td>
+											<td><a  th:href="@{'/cart/remove/'+${map.value.sanpham.maSp}}">Xóa</a></td>
+										</tr>
+									</tbody>
+
+
+
+
+								</table>
+							</div>
+
+							<div class="row">
+							<div class="col-md-7 ">
+									<div class="cart-totals">
+										<h2>Thông Tin Khách Hàng</h2>
+										<div class="table-cart table-responsive">
+											<table>
+												<tbody class="cart-totals-list">
+													<tr>
+														<th>Họ Và Tên</th>
+														<td><p th:text="${session.tenKh}"></p></td>
+													</tr>
+													<tr class="cart-total">
+														<th>Địa Chỉ</th>
+														<td th:text="${session.diaChiKh}"></td>
+													</tr>
+													<tr class="cart-total">
+														<th>Số Điện Thoại</th>
+														<td th:text="${session.soDienThoaiKh}"></td>
+													</tr>
+												</tbody>
+											</table>
+											
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-md-5 ">
+									<div class="cart-totals">
+										<h2>Total</h2>
+										<div class="table-cart table-responsive">
+											<table>
+												<tbody class="cart-totals-list">
+													<tr>
+														<th>Shipping</th>
+														<td><p>Miễn Phí</p></td>
+													</tr>
+													<tr class="cart-total">
+														<th>Tổng Hóa Đơn</th>
+														<td th:text="${session.mycarttotal} +'VND'"></td>
+													</tr>
+												</tbody>
+											</table>
+											
+											<div class="we-proceed-to-checkout" >
+												<a th:if="${session.mycarttotal == null && session.mycarttotal < 1}">Bạn Chưa Có Sản Phẩm</a>
+												<button class="btn btn-success" th:if="${session.mycarttotal >= 1 }">Thanh Toán</button>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- SHOPPING-CART-AREA END -->
+		<!-- BRAND-LOGO-AREA START -->
+		
+		<!-- BRAND-LOGO-AREA END -->
+	</section>
+	<!-- PAGE-CONTENT END -->
+
+	
+	<!-- FOOTER-AREA END -->
+
+
+</body>
+</html>

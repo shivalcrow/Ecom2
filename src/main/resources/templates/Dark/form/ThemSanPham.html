@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="content-page" layout:fragment="content">
+	<!-- Start content -->
+	<div class="content">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card-box">
+						<h4 class="header-title m-t-0 m-b-30">Thêm mới nhân viên</h4>
+						<div th:if="${message != nulll}">
+							<span th:text="${message}" style="color: red"> </span>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<form class="form-horizontal"
+									th:action="@{/admin/SaveOrUpdate-sp}" th:object="${sanphamdto}"
+									method="post" enctype="multipart/form-data">
+									<div class="form-group" th:if="${sanphamdto.maSp >0}" hidden="">
+										<label class="col-md-2 control-label">Mã Sản Phẩm</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{maSp}">
+										</div>
+									</div>
+
+									<div class="form-group">
+
+										<label class="col-md-2 control-label">Tên Sản Phẩm</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{tenSp}">
+											<span th:if="${#fields.hasErrors('tenSp')}"
+												th:errors="*{tenSp}" style="color: red"></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">Danh Mục</label>
+										<div class="col-md-10">
+											<select class="form-control select2" th:field="*{danhMuc}">
+											
+												<option th:each="items : ${danhmucss}" 
+													th:text="${items.tenDm}" th:value="${items.maDm}"></option>
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Chất Liệu</label>
+										<div class="col-md-10">
+											<select class="form-control select2" th:field="*{chatLieu}">
+												
+												<option th:each="item : ${chatlieus}"
+													th:value="${item.maCl}" th:text="${item.tenCl}"></option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">Loại Sản Phẩm</label>
+										<div class="col-md-10">
+											<select class="form-control select2" th:field="*{loaiSp}">
+												<option th:each="item : ${loaisps}"
+													th:value="${item.idLoaiSp}" th:text="${item.tenLoaiSp}"></option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+
+										<label class="col-md-2 control-label">Giá Bán</label>
+										<div class="col-md-10">
+											<input type="text" class="form-control" th:field="*{giaBan}">
+											<span th:if="${#fields.hasErrors('giaBan')}"
+												th:errors="*{giaBan}" style="color: red"></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">Tình Trạng Sản
+											Phẩm</label>
+										<div class="col-md-10">
+											<select class="form-control select2" th:field="*{tinhTrang}">
+											<option value="">--</option>
+												<option th:each="item : ${tinhtrangs}"
+													th:value="${item.idTinhTrang}" th:text="${item.tinhTrang}"></option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">Mô Tả</label>
+										<div class="col-md-10">
+											<textarea id="elm1" name="area" th:field=*{moTaSp}></textarea>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-2 control-label">Hình ảnh</label>
+										<div class="col-md-10">
+											<input type="file" class="form-control "
+												th:field="*{hinhAnhSp}"> <span
+												th:if="${#fields.hasErrors('hinhAnhSp')}"
+												th:errors="*{hinhAnhSp}" style="color: red"></span> <img
+												style="height: 120px; width: 100px;"
+												th:if="${sanphamdto.hinhAnhSp != null && !sanphamdto.hinhAnhSp.empty}"
+												th:src="@{'/getimage/' + ${sanphamdto.maSp}}"
+												th:alt="${sanphamdto.hinhAnhSp}">
+
+										</div>
+									</div>
+
+									<button type="submit" th:if="${sanphamdto.maSp <=0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Thêm
+										mới</button>
+									<button type="submit" th:if="${sanphamdto.maSp > 0}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Cập
+										Nhật</button>
+									<a type="button" th:href="@{/admin/SanPham/page/1}"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">Quay
+										lại</a>
+
+								</form>
+							</div>
+							<!-- end col -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+
+
+
+
+</body>
+</html>

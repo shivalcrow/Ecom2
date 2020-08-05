@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 20, 2020 11:26:53 AM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="management_shop" dynamic-insert="false" dynamic-update="false" mutable="true" name="App.entity.PhamVi" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="pham_vi">
+        <id name="maPv" type="java.lang.Integer">
+            <column name="ma_pv"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="phamVi" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="pham_vi" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="thongKes" optimistic-lock="true" sort="unsorted" table="thong_ke">
+            <key on-delete="noaction">
+                <column name="ma_pv"/>
+            </key>
+            <one-to-many class="App.entity.ThongKe" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Admin)/layoutadmin.html}">
+<body>
+	<div class="content-page" layout:fragment="content">
+		<!-- Start content -->
+		<div class="content">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card-box table-responsive">
+
+							<div class="m-b-30">
+								<a id="addTo4Table"
+									class="btn btn-primary waves-effect waves-light"
+									th:href="@{/admin/add-pq}">Thêm Phân Quyền </a>
+							</div>
+							<p th:utext="${message}">
+							<h4 class="header-title m-t-0 m-b-30">Danh sách phân quyền</h4>
+
+							<table id="datatable" class="table table-striped table-bordered">
+								<thead>
+									<tr>
+
+										<th>Mã phân quyền</th>
+										<th>Tên phân quyền</th>
+										<th>Thao Tác</th>
+
+									</tr>
+								</thead>
+
+								<tbody th:each="item :${phanquyens} ">
+									<tr>
+										<td th:text="${item.maPhanQuyen}"></td>
+										<td th:text="${item.tenPhanQuyen}"></td>
+										<td class="actions"><a
+											th:href="@{'/admin/edit-pq/'+${item.maPhanQuyen}}"
+											class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+											<a th:href="@{'/admin/delete-pq/'+${item.maPhanQuyen}}"
+											class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+										</td>
+
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+						<div class="col-md-8">
+							<nav aria-label="Pagination">
+								<ul class="pagination justify-content-center">
+									<li class="page-item" th:each="pageNumber : ${pageNumbers}">
+										<a class="page-link"
+										th:href="@{|/admin/PhanQUyen/page/${pageNumber}|}"
+										th:text=${pageNumber}></a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<!-- end col -->
+				</div>
+				<!-- end row -->
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- END wrapper -->
+
+
+
+</body>
+</html>

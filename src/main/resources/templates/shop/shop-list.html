@@ -1,0 +1,331 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{head,ses,foot(Shop)/layoutshop.html}">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+</head>
+<body>
+	<header> </header>
+	<!-- HEADER-AREA END -->
+
+	<!-- PAGE-CONTENT START -->
+	<section layout:fragment="content">
+		<!-- PAGE-BANNER START -->
+		<div class="page-banner-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-banner-menu">
+							<h2 class="page-banner-title">STD Fashion Shop</h2>
+							<ul>
+								<li><a th:href="@{/home}">Trang chủ</a></li>
+								<li>Sản phẩm</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- PAGE-BANNER END -->
+		<!-- SHOP-AREA START -->
+		<div class="shop-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<span class="shop-border"></span>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+						<!-- widget-categories start -->
+						<aside class="widget widget-categories">
+							<h5>PHÂN LOẠI</h5>
+							<ul>
+								<li><a href="/sanpham/men">NAM</a></li>
+								<li><a href="/sanpham/women">NỮ</a></li>
+							</ul>
+
+							<h5>DANH MỤC</h5>
+							<ul>
+								<li th:each="item : ${danhmuc}"><a
+									th:href="@{'/sanpham/danhmuc/' + ${item.maDm}}"
+									th:text="${item.tenDm}"></a></li>
+							</ul>
+						</aside>
+						<!-- widget-categories end -->
+					</div>
+					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+						<!-- Shop-Content start -->
+						<div class="shop-content">
+							<!-- product-toolbar start -->
+							<div class="product-toolbar">
+								<!-- Shop-menu -->
+								<div class="shop-menu view-mode">
+									<a class="grid-view active" href="#grid-view" data-toggle="tab"><i
+										class="sp-grid-view"></i></a> <a class="list-view"
+										href="#list-view" data-toggle="tab"><i
+										class="sp-list-view"></i></a>
+								</div>
+								<!-- pagination -->
+								<div style="margin: -20px; padding-left: 655px;">
+									<ul class="pagination">
+										<li
+											th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+											<a th:href="@{|${baseUrl}${1}|}">First</a>
+										</li>
+										<li
+											th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+											<a class="page-link" aria-label="Previous"
+											th:href="@{|${baseUrl}${currentIndex - 1}|}"
+											title='Go to previous page'><span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span></a>
+										</li>
+										<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+											style=""
+											th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+											<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+												th:text='${item}'>1</span>
+										</a>
+										</li>
+										<li
+											th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+											<a class="page-link" aria-label="Next"
+											th:href="@{|${baseUrl}${currentIndex + 1}|}"
+											title='Go to next page'><span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span></a>
+										</li>
+										<li
+											th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+											<a class="page-link"
+											th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- product-toolbar end -->
+							<!-- Shop-product start -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="grid-view">
+									<div class="row shop-grid">
+										<!-- Single-product start -->
+										<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"
+											th:each="items : ${danhmucsp.pageList}">
+											<div class="single-product">
+												<div class="product-photo">
+													<a th:href="@{'/sanpham/chitiet/' + ${items.maSp}}"> <img
+														class="primary-photo" style="height: 400px; width: auto;"
+														th:src="@{'/getimage/' + ${items.maSp}}"
+														th:alt="${items.hinhAnhSp}" alt="" />
+													</a>
+													<div class="pro-action">
+														<a href="#" class="action-btn"><i
+															class="sp-shopping-cart"></i><span>Thêm vào giỏ
+																hàng</span></a>
+													</div>
+												</div>
+												<div class="product-brief">
+													<h2>
+														<a th:href="@{'/sanpham/chitiet/' + ${items.maSp}}"
+															th:text="${items.tenSp}"></a>
+													</h2>
+													<h3 th:text="${items.giaBan}"></h3>
+												</div>
+											</div>
+										</div>
+										<!-- Single-product end -->
+
+									</div>
+								</div>
+								<div role="tabpanel" class="tab-pane" id="list-view">
+									<div class="row shop-list">
+										<!-- Single-product start -->
+										<div class="col-md-12" th:each="item : ${danhmucsp.pageList}">
+											<div class="single-product">
+												<div class="product-photo">
+													<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}"> <img
+														class="primary-photo"
+														th:src="@{'/getimage/' + ${item.maSp}}"
+														th:alt="${item.hinhAnhSp}" alt="" /> <img
+														class="secondary-photo"
+														th:src="@{'/getimage/' + ${item.maSp}}"
+														th:alt="${item.hinhAnhSp}" alt="" />
+													</a>
+													<div class="pro-action">
+														<a href="#" class="action-btn"><i
+															class="sp-shopping-cart"></i><span>Thêm vào giỏ
+																hàng</span></a>
+													</div>
+													
+												</div>
+												<div class="product-brief">
+													<h2>
+														<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}"
+															th:text="${item.tenSp}"></a>
+													</h2>
+													<h3 th:text="${item.giaBan}"></h3>
+													<div class="porduct-desc">
+														<p th:text="${item.moTaSp}"></p>
+													</div>
+													<div class="pro-quick-view">
+														<div class="quick-view">
+															<a th:href="@{'/sanpham/chitiet/' + ${item.maSp}}"
+																data-toggle="modal" title="Quick View">Xem nhanh</a>
+														</div>
+														<div class="pro-rating">
+															<a href="#"><i class="sp-star rating-1"></i></a> <a
+																href="#"><i class="sp-star rating-1"></i></a> <a
+																href="#"><i class="sp-star rating-1"></i></a> <a
+																href="#"><i class="sp-star rating-1"></i></a> <a
+																href="#"><i class="sp-star rating-2"></i></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- Single-product end -->
+									</div>
+								</div>
+							</div>
+							<!-- Shop-product end -->
+							<!-- product-toolbar start -->
+							<div class="product-toolbar btm-border">
+								<!-- Shop-menu -->
+								<div class="shop-menu view-mode">
+									<a class="grid-view active" href="#grid-view" data-toggle="tab"><i
+										class="sp-grid-view"></i></a> <a class="list-view"
+										href="#list-view" data-toggle="tab"><i
+										class="sp-list-view"></i></a>
+								</div>
+								<!-- pagination -->
+								<div style="margin: -20px; padding-left: 655px;">
+									<ul class="pagination">
+										<li
+											th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+											<a th:href="@{|${baseUrl}${1}|}">First</a>
+										</li>
+										<li
+											th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+											<a class="page-link" aria-label="Previous"
+											th:href="@{|${baseUrl}${currentIndex - 1}|}"
+											title='Go to previous page'><span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span></a>
+										</li>
+										<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+											style=""
+											th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+											<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+												th:text='${item}'>1</span>
+										</a>
+										</li>
+										<li
+											th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+											<a class="page-link" aria-label="Next"
+											th:href="@{|${baseUrl}${currentIndex + 1}|}"
+											title='Go to next page'><span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span></a>
+										</li>
+										<li
+											th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+											<a class="page-link"
+											th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- product-toolbar end -->
+						</div>
+						<!-- Shop-Content end -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- SHOP-AREA END -->
+
+		<!-- SERVICE-AREA START -->
+		<div class="service-area margin-bottom-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="single-service">
+							<div class="service-icon">
+								<i class="sp-transport"></i>
+							</div>
+							<div class="service-brief">
+								<h3>Giao hàng miễn phí</h3>
+								<p>Giao hàng nhanh trong vòng 2h nếu khu vực nhận hàng gần
+									cửa hàng</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="single-service">
+							<div class="service-icon">
+								<i class="sp-head-phone"></i>
+							</div>
+							<div class="service-brief">
+								<h3>Đường dây nóng</h3>
+								<p>(+84) 911542728 - Gọi chúng tôi bất cứ lúc nào bạn cần hỗ
+									trợ</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="single-service">
+							<div class="service-icon">
+								<i class="sp-business"></i>
+							</div>
+							<div class="service-brief">
+								<h3>Đảm bảo hoàn tiền</h3>
+								<p>Nếu sản phẩm lúc nhận bị lỗi hoặc không còn mới bạn có
+									thể hoàn lại tiền</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- SERVICE-AREA END -->
+	</section>
+	<!-- PAGE-CONTENT END -->
+
+	<!-- FOOTER-AREA START -->
+	<footer> </footer>
+	<!-- FOOTER-AREA END -->
+
+	<!-- QUICKVIEW PRODUCT -->
+	<div layout:fragment="quickview">
+		<!-- Modal -->
+
+	</div>
+	<!-- END QUICKVIEW PRODUCT -->
+
+
+	<!-- all js here -->
+	<!-- jquery latest version -->
+	<script src="js/vendor/jquery-1.12.0.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- jquery.nivo.slider js -->
+	<script src="lib/js/jquery.nivo.slider.js"></script>
+	<script src="lib/home.js"></script>
+	<!-- owl.carousel js -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- meanmenu js -->
+	<script src="js/jquery.meanmenu.js"></script>
+	<!-- jquery-ui js -->
+	<script src="js/jquery-ui.min.js"></script>
+	<!-- lightbox.min js -->
+	<script src="js/lightbox.min.js"></script>
+	<!-- countdon.min js -->
+	<script src="js/countdon.min.js"></script>
+	<!-- wow js -->
+	<script src="js/wow.min.js"></script>
+	<script type="text/javascript">
+			new WOW().init();
+		</script>
+	<!-- plugins js -->
+	<script src="js/plugins.js"></script>
+	<!-- main js -->
+	<script src="js/main.js"></script>
+</body>
+</html>
