@@ -18,7 +18,7 @@ import App.entity.SanPham;
 
 //@Transactional
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomeController {
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
