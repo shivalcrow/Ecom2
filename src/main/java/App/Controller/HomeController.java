@@ -26,7 +26,7 @@ public class HomeController {
 	private SanPhamService sanphamservice;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GetMapping("")
+	@GetMapping("home")
 	public String home(ModelMap model) {
 		Session session = entityManagerFactory.createEntityManager().unwrap(Session.class);
 		String hql = "FROM SanPham S WHERE S.loaiSp=1 ";
