@@ -1,5 +1,4 @@
 package App.entity;
-
 public class Cart {
 	private SanPham sanpham;
 	private int quantity;

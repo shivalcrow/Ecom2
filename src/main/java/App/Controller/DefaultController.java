@@ -88,7 +88,7 @@ public class DefaultController {
 	        ConfirmationToken token = confirmationtokenrepository.findByconfirmationToken(confirmationToken);
 
 	        if (token != null) {
-	            NhanVien user = nhanvienservice.findbyemail(token.getNhanvien().getEmailNv());
+	            NhanVien user = nhanvienservice.findbyemail(token.getNhanVien().getEmailNv());
 	           
 	            nhanvienservice.save(user);
 	            modelAndView.addObject("nv", user);
